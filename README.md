@@ -25,5 +25,22 @@ This project turns an ESP32-S3 development board into an infinite filesystem ins
 4. Copy the path it returns and paste it into your file browser after `disk/`.
 5. Find the `file`, copy it off of the drive, and verify that it is in fact the same file.
 
+## Finding a file path from a file
+
+1. Compile `path-to-file.cpp` with:
+
+   ```bash
+   clang++ -std=c++17 -O3 path-to-file.cpp -o path-to-file
+   ```
+
+2. Run the program and pass the output file name you want to create:
+
+   ```bash
+   echo "/AB/cd/..." | ./path-to-file output.bin
+   ```
+
+   Replace `"/AB/cd/..."` with the generated Babel path you want to convert back into a file. The program reads the path from standard input and writes the recovered bytes to `output.bin`.
+3. Open the generated file with a hex editor or compare it against the original file you encoded.
+
 ## Credits
 The hardware-facing bits of this project are loosely cobbled on top of RigoLigoRLC's work on [esp32s3-tusb-mtp](https://github.com/RigoLigoRLC/esp32s3-tusb-mtp) and their [fork of espressif-tinyusb-...
